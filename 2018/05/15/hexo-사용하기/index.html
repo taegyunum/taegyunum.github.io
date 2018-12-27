@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    hexo 사용하기 | taegyunum blog
+  </title>
+  <meta name="description" content="기술 블로그">
+  
+  <meta name="keywords" content="
+  hexo
+  ">
+  
+  <meta name="author" content="Taegyun Um">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+  <link rel="icon" type="image/x-icon" href="">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://octodex.github.com/images/baracktocat.jpg"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 11 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 1 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 7 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">taegyunum blog</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    Taegyun Um
+
+    <span class="post-date float-right" title="{{moment(1526360662000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1526360662000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>hexo 사용하기</h1>
+    <p>블로그를 Hexo를 사용하여 재구성하였습니다.<br>한글 사용하는 것<br>기존 jekyll으로 구성하였을 땐 Mac OS 환경에서 Ruby 패키지 사용이 익숙치 않아 구성에 어려움이 있었습니다. 반면 Hexo는 node.js 기반으로 npm 설치를 통해 간단하게 로컬 환경을 구성할 수 있었습니다.<br>또한 hexo-cli 명령어를 통해 Post의 title, date, tags를 자동으로 세팅해주는 템플릿 기능이 있어 편리합니다.</p>
+<h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><p><code>npm install -g hexo-cli</code></p>
+<h2 id="초기-설정"><a href="#초기-설정" class="headerlink" title="초기 설정"></a>초기 설정</h2><p>hexo 디렉토리 생성<br><code>hexo init blog</code><br><code>cd blog</code><br><code>npm install</code><br><code>npm install hexo-deployer-git --save</code><br><code>npm install hexo-generator-json-content --save</code> (hueman 템플릿 사용시 검색 기능 활성화에 필요)</p>
+<h2 id="설정"><a href="#설정" class="headerlink" title="설정"></a>설정</h2><p>_config.yaml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: 	# 블로그명 기입</span><br><span class="line">subtitle: # 블로그 부제 기입</span><br><span class="line">description:  # 블로그 설명</span><br><span class="line">author: # 저자</span><br><span class="line">language: en </span><br><span class="line">timezone: Asia/Seoul </span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">url: # github page 주소</span><br><span class="line"></span><br><span class="line"># Deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: # git repo 주소</span><br></pre></td></tr></table></figure></p>
+<h2 id="테마-설치"><a href="#테마-설치" class="headerlink" title="테마 설치"></a>테마 설치</h2><p>블로그 설치 경로에서 아래 명령어 실행<br><code>git clone https://github.com/ppoffice/hexo-theme-hueman.git themes/hueman</code></p>
+<h3 id="Hexo-config-yml-변경"><a href="#Hexo-config-yml-변경" class="headerlink" title="Hexo _config.yml 변경"></a>Hexo _config.yml 변경</h3><p>설정파일 내 theme 값을 <code>theme: hueman</code> 으로 변경</p>
+<h2 id="시작"><a href="#시작" class="headerlink" title="시작"></a>시작</h2><p><code>hexo server</code></p>
+<h2 id="빌드"><a href="#빌드" class="headerlink" title="빌드"></a>빌드</h2><p><code>hexo generate</code></p>
+<h2 id="배포"><a href="#배포" class="headerlink" title="배포"></a>배포</h2><p><code>hexo deploy</code></p>
+<h2 id="빌드와-배포-동시에-진행"><a href="#빌드와-배포-동시에-진행" class="headerlink" title="빌드와 배포 동시에 진행"></a>빌드와 배포 동시에 진행</h2><p><code>hexo g -d</code></p>
+<h2 id="포스트-작성"><a href="#포스트-작성" class="headerlink" title="포스트 작성"></a>포스트 작성</h2><p><code>hexo new post &#39;새로운 글&#39;</code></p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://taegyunum.github.io" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2018 Taegyun Um</li>
+      <li><a href="http://taegyunum.github.io">Home</a></li>
+      
+      <li><a href="https://github.com/taegyunum">Github</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

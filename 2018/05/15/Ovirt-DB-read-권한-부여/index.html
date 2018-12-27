@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    Ovirt DB read 권한 부여 | taegyunum blog
+  </title>
+  <meta name="description" content="기술 블로그">
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="Taegyun Um">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+  <link rel="icon" type="image/x-icon" href="">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://octodex.github.com/images/baracktocat.jpg"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 11 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 1 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 7 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">taegyunum blog</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    Taegyun Um
+
+    <span class="post-date float-right" title="{{moment(1526367895000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1526367895000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>Ovirt DB read 권한 부여</h1>
+    <p>Ovirt의 Database는 Postgresql을 사용합니다. Ovirt의 database는 2개가 생성되는데 engine과 ovirt_engine_history (DWH)의 read 권한을 부여하도록 하겠습니다.</p>
+<p>engine 서버 쉘에서<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">su - postgres</span><br><span class="line">scl enable rh-postgresql95 bash</span><br><span class="line"></span><br><span class="line">psql -U postgres -c &quot;CREATE ROLE &#123;USERNAME&#125; WITH LOGIN ENCRYPTED PASSWORD &apos;&#123;PASSWORD&#125;&apos;;&quot; -d ovirt_engine_history</span><br><span class="line">psql -U postgres -c &quot;GRANT CONNECT ON DATABASE ovirt_engine_history TO &#123;USERNAME&#125;;&quot;</span><br><span class="line">psql -U postgres -c &quot;GRANT USAGE ON SCHEMA public TO &#123;USERNAME&#125;;&quot; ovirt_engine_history</span><br><span class="line">psql -U postgres -c &quot;SELECT &apos;GRANT SELECT ON &apos; || relname || &apos; TO &#123;USERNAME&#125;;&apos; FROM pg_class JOIN pg_namespace ON pg_namespace.oid = pg_class.relnamespace WHERE nspname = &apos;public&apos; AND relkind IN (&apos;r&apos;, &apos;v&apos;);&quot; --pset=tuples_only=on  ovirt_engine_history &gt; grant.sql</span><br><span class="line"></span><br><span class="line">psql -U postgres -f grant.sql ovirt_engine_history</span><br></pre></td></tr></table></figure></p>
+<p>engine database에 대해서도 동일한 방법으로 적용합니다.</p>
+<p><code>/var/opt/rh/rh-postgresql95/lib/pgsql/data/pg_hba.conf</code> 파일에 postgresql 접속을 허용하는 호스트를 입력합니다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host  all  all 0.0.0.0/0 md5 (모든 대역 허용)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scl enable rh-postgresql95 bash</span><br><span class="line">systemctl restart rh-postgresql95-postgresql</span><br></pre></td></tr></table></figure>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://taegyunum.github.io" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2018 Taegyun Um</li>
+      <li><a href="http://taegyunum.github.io">Home</a></li>
+      
+      <li><a href="https://github.com/taegyunum">Github</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

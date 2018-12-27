@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    18/02/28 트러블슈팅 내역 | taegyunum blog
+  </title>
+  <meta name="description" content="기술 블로그">
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="Taegyun Um">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+  <link rel="icon" type="image/x-icon" href="">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://octodex.github.com/images/baracktocat.jpg"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 11 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 1 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 7 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">taegyunum blog</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    Taegyun Um
+
+    <span class="post-date float-right" title="{{moment(1519886100000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1519886100000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>18/02/28 트러블슈팅 내역</h1>
+    <p>트러블 슈팅 내역</p>
+<h2 id="1-리눅스-배포판-확인"><a href="#1-리눅스-배포판-확인" class="headerlink" title="1. 리눅스 배포판 확인"></a>1. 리눅스 배포판 확인</h2><p><code>cat /etc/*release</code></p>
+<p>-&gt; Centos가 아닌 RHEL으로 확인됨.</p>
+<h2 id="2-Redhat-Subscription-구독상태-확인"><a href="#2-Redhat-Subscription-구독상태-확인" class="headerlink" title="2. Redhat Subscription 구독상태 확인"></a>2. Redhat Subscription 구독상태 확인</h2><p><code>subscription-manager version</code></p>
+<h2 id="3-Redhat-Subscription-미구독으로-인한-yum-사용-불가"><a href="#3-Redhat-Subscription-미구독으로-인한-yum-사용-불가" class="headerlink" title="3. Redhat Subscription 미구독으로 인한 yum 사용 불가"></a>3. Redhat Subscription 미구독으로 인한 yum 사용 불가</h2><p>Daum Centos Repo를 추가</p>
+<p><code>vi /etc/yum.repos.d/Daum.repo</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[base]</span><br><span class="line"></span><br><span class="line">name=CentOS-$releasever - Base</span><br><span class="line">baseurl=http://ftp.daum.net/centos/7/os/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://ftp.daum.net/centos/RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line">[updates]</span><br><span class="line"></span><br><span class="line">name=CentOS-$releasever - Updates</span><br><span class="line">baseurl=http://ftp.daum.net/centos/7/updates/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://ftp.daum.net/centos/RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line">[extras]</span><br><span class="line"></span><br><span class="line">name=CentOS-$releasever - Extras</span><br><span class="line">baseurl=http://ftp.daum.net/centos/7/extras/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://ftp.daum.net/centos/RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line">[centosplus]</span><br><span class="line"></span><br><span class="line">name=CentOS-$releasever - Plus</span><br><span class="line">baseurl=http://ftp.daum.net/centos/7/centosplus/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://ftp.daum.net/centos/RPM-GPG-KEY-CentOS-7</span><br></pre></td></tr></table></figure>
+<h2 id="4-외부-인터넷-연결-불가"><a href="#4-외부-인터넷-연결-불가" class="headerlink" title="4. 외부 인터넷 연결 불가"></a>4. 외부 인터넷 연결 불가</h2><p>1) DNS 서버 설정</p>
+<p><code>vi /etc/resolv.conf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nameserver 8.8.8.8</span><br></pre></td></tr></table></figure></p>
+<p>2) 라우팅 테이블 확인 후 누락된 라우팅 테이블 추가</p>
+<p><code>route add default gw 192.168.0.1</code></p>
+<p>3) 네트웍 재시작</p>
+<p><code>systemctl restart network</code></p>
+<h2 id="5-Background-상태에-있는-프로세스-종료"><a href="#5-Background-상태에-있는-프로세스-종료" class="headerlink" title="5. Background 상태에 있는 프로세스 종료"></a>5. Background 상태에 있는 프로세스 종료</h2><p>1) jobs 명령어로 현재 background 상태 프로세스 들 확인</p>
+<p>2) fg [해당 번호] 로 프로세스 전환</p>
+<p>3) Ctrl + C 로 프로세스 종료</p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://taegyunum.github.io" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2018 Taegyun Um</li>
+      <li><a href="http://taegyunum.github.io">Home</a></li>
+      
+      <li><a href="https://github.com/taegyunum">Github</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

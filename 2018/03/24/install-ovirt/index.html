@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    Ovirt Engine 4.2 설치 | taegyunum blog
+  </title>
+  <meta name="description" content="기술 블로그">
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="Taegyun Um">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+  <link rel="icon" type="image/x-icon" href="">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://octodex.github.com/images/baracktocat.jpg"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 11 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 1 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 7 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">taegyunum blog</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    Taegyun Um
+
+    <span class="post-date float-right" title="{{moment(1521896400000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1521896400000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>Ovirt Engine 4.2 설치</h1>
+    <h1 id="Ovirt-Engine-4-2-설치"><a href="#Ovirt-Engine-4-2-설치" class="headerlink" title="Ovirt Engine 4.2 설치"></a>Ovirt Engine 4.2 설치</h1><p>Ovirt Engine을 설치하는 방식은 Standalone 과 Self-Hosted Engine 2가지 방식이 있습니다.<br>HA를 구성하기 위해선 Self-Hosted Engine방식으로 구성해야합니다.<br>본 포스트에선 조금 더 간단한 Standalone 방식에 대해 작성하도록 하겠습니다.</p>
+<h2 id="시스템-요구사항"><a href="#시스템-요구사항" class="headerlink" title="시스템 요구사항"></a>시스템 요구사항</h2><p>Ovirt-Engine의 시스템 요구사항으로</p>
+<ul>
+<li>최소 Dual core CPU, 권장 Quad core 이상 CPU</li>
+<li>최소 4GB Memory, 권장 16GB Memory</li>
+<li>최소 25GB HDD, 권장 50GB 이상HDD</li>
+</ul>
+<p>Ovirt를 설치하기 위해선 설치 서버에서 가상화 기능을 지원해야합니다.<br>해당 서버의 가상화 지원 유무는 다음 명령어를 통해 확인할 수 있습니다.<br><code>grep -E &#39;svm|vmx&#39; /proc/cpuinfo | grep nx</code><br>위의 명령어로 조회되는 결과가 없으면 CPU에서 가상화 명령어를 지원하지 않거나, BIOS에서 가상화기능이 Off 되었을 수 있습니다.</p>
+<h2 id="방화벽-설정"><a href="#방화벽-설정" class="headerlink" title="방화벽 설정"></a>방화벽 설정</h2><p>Ovirt-Engine을 구동하기 위해 오픈해야하는 포트는 아래와 같습니다.</p>
+<ul>
+<li>22 TCP</li>
+<li>2222 TCP</li>
+<li>80, 443 TCP</li>
+<li>6100 TCP</li>
+<li>7410 UDP</li>
+</ul>
+<p>OS 내부의 firewalld 등의 소프트웨어를 통해 관리하는 경우 설정 과정에서 자동으로 방화벽 규칙을 세팅하도록 할 수 있습니다.</p>
+<blockquote>
+<p>자동으로 firewalld 규칙을 설정하도록 하는 경우 기존 방화벽 규칙을 덮어쓸 수 있습니다.</p>
+</blockquote>
+<h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><p><code>yum -y install http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm</code><br><code>yum -y update</code><br><code>yum -y install ovirt-engine</code></p>
+<p>필요한 패키지의 설치가 완료되면 Ovirt-Engine 설정을 진행합니다.</p>
+<p><code>engine-setup</code></p>
+<p>설정 단계에선 특별한 경우를 제외하고 모두 기본값을 사용합니다.</p>
+<p>설정이 완료되면 웹 브라우져에 서버 호스트명을 입력하여 관리 페이지에 접속할 수 있습니다.</p>
+<p>초기 로그인 아이디는 admin, 비밀번호는 설정 과정에서 입력한 비밀번호로 로그인 가능합니다.</p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://taegyunum.github.io" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2018 Taegyun Um</li>
+      <li><a href="http://taegyunum.github.io">Home</a></li>
+      
+      <li><a href="https://github.com/taegyunum">Github</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>
